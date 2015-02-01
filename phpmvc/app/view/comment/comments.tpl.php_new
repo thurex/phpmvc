@@ -1,0 +1,21 @@
+<hr>
+
+<input type=hidden name="redirect" value="<?=$this->url->create('')?>">
+<div class='comments'>
+<?php foreach ($comments as $comment) : ?> <span class="badge pull-right"><?=$comment->id?></span>
+<h4 class="myCustom" style="color:#A0A0A0;"><?=$comment->name?> | <a href="#" style="font-size:10px; font-color:A8A8A8"><?=$comment->homepage?><br></a></h4> 
+<div style="padding-top:3px; padding-left:4px; border: 6px transparent; border-color:#E0E0E0; min-width:300px; min-height:100px; background-color:#F0F0F0;">
+<?=$comment->message?><br>
+</div>
+
+<br>
+
+<a href='comment/delete/<?=$comment->id?>'  class="pull-right"><button class="btn btn-danger btn-sm">Delete</button></a>    
+<a href='comment/update/<?=$comment->id?>'  style="padding-right: 10px;"class="pull-right"><button class="btn btn-warning btn-sm">Update</button></a>    
+                
+<h5 style="font-size: 10px; color:#A0A0A0 ;"><?=$comment->timestamp?> </h5>
+<hr>
+
+<?php endforeach; ?>
+<br>
+</div>

@@ -1,0 +1,34 @@
+<hr>
+
+<h2>Kommentarer</h2>
+<?php print_r($comments); ?>
+
+<?php if (is_array($comments)) : ?>
+<div class='comments'>
+<?php foreach ($comments as $id => $comment) : ?>
+    <?php $dateOfComment = getdate($comment['timestamp']); ?>
+
+<h4>#<?=$id +1?> från <?=$comment['name']?> | <?=$dateOfComment['year']?>-<?=$dateOfComment['mon']?>-<?=$dateOfComment['mday']?>;<?=$dateOfComment['hours']?>:<?=$dateOfComment['minutes']?></h4> 
+
+<?=$comment['content']?><br>
+
+
+
+
+<a href=""  title="mail"><?=$comment['mail']?></a><br>
+<a href=""  title="homepage"><?=$comment['web']?></a> 
+        <form method="post">
+        <input type=hidden name="redirect" value="<?=$this->url->create($this->request->getCurrentUrl())?>">
+        <input type="hidden" name="key" value="<?=$key ?>"/>
+            <input type='submit' name='doEdit' value='Edit' onClick="this.form.action = '<?=$this->url->create('comment/editView/')?>'"/>
+            <input type='submit' name='doDeleteComment' value='Remove' onClick="this.form.action = '<?=$this->url->create('comment/deleteComment')?>'"/>
+            <input type="hidden" name="commentId" value="<?=$id ?>"/>
+
+        </form>
+<hr>
+
+<?php endforeach; ?>
+</div>
+<?php else :
+?>
+<?php endif; ?> 
